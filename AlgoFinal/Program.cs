@@ -8,7 +8,7 @@ namespace AlgoFinal
         static int findMinbin(int[] weights, int maxWeight)
         {
             int min = 0;
-            Array.Sort(weights);
+
 
             bool[] visited = new bool[weights.Length];
             int processed = 0;
