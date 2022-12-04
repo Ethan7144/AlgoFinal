@@ -7,7 +7,52 @@ namespace AlgoFinal
     {
         static int findMinbin(int[] weights, int maxWeight)
         {
-          
+            int min = 0;
+            Array.Sort(weights);
+
+            bool[] visited = new bool[weights.Length];
+            int processed = 0;
+
+            if (weights.Length == 1) return 1;
+
+            while (processed != weights.Length)
+            {
+                int weightSum = 0;
+                for (int j = weights.Length - 1; j >= 0; j--)
+                {
+                    if (!visited[j] && weightSum < maxWeight)
+                    {
+                        weightSum += weights[j];
+                        visited[j] = true;
+                        processed++;
+                        if (weightSum > maxWeight)
+                        {
+                            visited[j] = false;
+                            processed--;
+                            weightSum -= weights[j];
+                            break;
+                        }
+                    }
+                }
+                for (int i = 0; i < weights.Length; i++)
+                {
+                    if (!visited[i] && weightSum < maxWeight)
+                    {
+                        weightSum += weights[i];
+                        visited[i] = true;
+                        processed++;
+                        if (weightSum > maxWeight)
+                        {
+                            visited[i] = false;
+                            processed--;
+                            break;
+                        }
+                    }
+                }
+                min++;
+            }
+            Console.WriteLine("Minimum Bin(s) needed: " + min);
+            return min;
         }
         static void Main(string[] args)
         {
