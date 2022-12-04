@@ -6,12 +6,25 @@ namespace FirstFit
     {
         static int FirstFit(int[] weight, int maxWeight)
         {
-            
+            int bin = 1, binSize = maxWeight;
+            Array.Sort(weight);
+            for (int i = 0; i < weight.Length; i++)
+            {
+                if (binSize - weight[i] < 0)
+                {
+                    bin++;
+                    binSize = maxWeight;
+                    binSize = binSize - weight[i];
+                }
+                else
+                    binSize = binSize - weight[i];
+            }
+            return bin;
         }
         public static void Main(string[] args)
         {
             Random rng = new Random();
-            int size = 100;
+            int size = 10000;
             int k = 100;
 
             int[] weight = new int[size];
