@@ -57,7 +57,7 @@ namespace AlgoFinal
         static void Main(string[] args)
         {
             Random rng = new Random();
-            int size = 10000;
+            int size = 100000;
             int k = 100;
             int[] weight = new int[size];
             for (int i = 0; i < weight.Length; i++)
